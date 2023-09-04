@@ -1,7 +1,12 @@
+import os
 import requests
 import streamlit as st
+from dotenv import find_dotenv, load_dotenv
 
 st.set_page_config(page_title="Simli Upload", page_icon="")
+
+_ = load_dotenv(find_dotenv())
+API = st.secrets["API"]
 
 def style():
     st.markdown(
@@ -19,7 +24,7 @@ def style():
         }
 
         [data-testid="stAppViewContainer"] {
-            background: linear-gradient(220deg, #fbeaf7,#ffffff, #dfeefb);
+            background: linear-gradient(220deg, #eefcff,#ffffff, #faf4ff);
             color: black;
         }
         
@@ -32,6 +37,7 @@ def style():
         """,
         unsafe_allow_html=True,
     )
+
 
 def main():
 
@@ -56,7 +62,7 @@ def main():
 
             with st.spinner('Uploading...'):
                 # Post the pdf file
-                response = requests.post('http://127.0.0.1:8000/uploadFile',
+                response = requests.post(API,
                                         params=payload,
                                         files={"file": uploaded_file})
 
