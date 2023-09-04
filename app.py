@@ -3,7 +3,7 @@ import streamlit as st
 
 st.set_page_config(page_title="Simli Upload", page_icon="")
 
-API = st.secrets["API"]
+API_BASE = st.secrets["API_BASE"]
 
 def style():
     st.markdown(
@@ -59,10 +59,10 @@ def main():
 
             with st.spinner('Uploading...'):
                 # Post the pdf file
-                response = requests.post(API,
+                response = requests.post(API_BASE+"uploadFile",
                                         params=payload,
                                         files={"file": uploaded_file})
-
+                print(response.url)
             if response.status_code == 200:
                 st.success('Successfully uploaded:   '+uploaded_file.name)
                 st.balloons()
