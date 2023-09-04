@@ -3,6 +3,8 @@ import streamlit as st
 
 st.set_page_config(page_title="Simli Upload", page_icon="")
 
+API_BASE = st.secrets["API_BASE"]
+
 def style():
     st.markdown(
         """
@@ -19,7 +21,7 @@ def style():
         }
 
         [data-testid="stAppViewContainer"] {
-            background: linear-gradient(220deg, #fbeaf7,#ffffff, #dfeefb);
+            background: linear-gradient(220deg, #eefcff,#ffffff, #faf4ff);
             color: black;
         }
         
@@ -32,6 +34,7 @@ def style():
         """,
         unsafe_allow_html=True,
     )
+
 
 def main():
 
@@ -56,10 +59,10 @@ def main():
 
             with st.spinner('Uploading...'):
                 # Post the pdf file
-                response = requests.post('http://127.0.0.1:8000/uploadFile',
+                response = requests.post(API_BASE+"uploadFile",
                                         params=payload,
                                         files={"file": uploaded_file})
-
+                print(response.url)
             if response.status_code == 200:
                 st.success('Successfully uploaded:   '+uploaded_file.name)
                 st.balloons()
