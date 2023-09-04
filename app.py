@@ -1,11 +1,8 @@
-import os
 import requests
 import streamlit as st
-from dotenv import find_dotenv, load_dotenv
 
 st.set_page_config(page_title="Simli Upload", page_icon="")
 
-_ = load_dotenv(find_dotenv())
 API = st.secrets["API"]
 
 def style():
