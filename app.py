@@ -18,29 +18,9 @@ def style():
             color: black;
         }
 
-        div.stButton > button:first-child {
-            font-size: 28px;
-            font-weight: bold;
-            padding: 16px 32px;
-            background-color: #FFFFFF;
-            color: #262730;
-            border: none;
-            display: block;
-            margin-left: auto;
-            margin-right:auto;
-            border-radius: 12px; /* Add rounded edges */
-            box-shadow: 0 0px 15px rgba(0, 0, 0, 0.2); /* Add shadow for a 3D look */
-            transition: all 0.3s ease-in-out; /* Add smooth transition for hover effects */
-        
-        }
-
-        div.stButton > button:first-child:hover {
-            cursor: pointer;
-            border: none;
-            background-color: #6ebabf;
-            transform: translateY(-5px) scale(1.02); /* Animate movement upwards and scale */
-            box-shadow: 0 10px 40px rgba(110, 186, 191, 1); /* Enlarge shadow on hover for a 3D effect */
-        
+        [data-testid="stAppViewContainer"] {
+            background: linear-gradient(220deg, #fbeaf7,#ffffff, #dfeefb);
+            color: black;
         }
         
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
