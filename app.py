@@ -49,25 +49,28 @@ def main():
     code = st.text_input("", max_chars=4)
 
     if len(code) == 4:
-        st.markdown('<h3 style="text-align: center; color: rgb(137, 79, 218)">2. Upload PDF file</h3>', unsafe_allow_html=True)
+        st.markdown('<h3 style="text-align: center; color: rgb(137, 79, 218)">2. Choose PDF file</h3>', unsafe_allow_html=True)
         uploaded_file = st.file_uploader("", type="pdf")
 
         if uploaded_file is not None:
+            col1, col2, col3 = st.columns([1,1,1])
+            with col2:
+                if st.button('Upload Presentation'):
+                    # Create payload
+                    payload = {'code': code.upper()}
 
-            # Create payload
-            payload = {'code': code.upper()}
-
-            with st.spinner('Uploading...'):
-                # Post the pdf file
-                response = requests.post(API_BASE+"uploadFile",
-                                        params=payload,
-                                        files={"file": uploaded_file})
-                print(response.url)
-            if response.status_code == 200:
-                st.success('Successfully uploaded:   '+uploaded_file.name)
-                st.balloons()
-            else:
-                st.error('Error occurred: '+response.text)
+                    with st.spinner('Uploading...'):
+                        # Post the pdf file
+                        response = requests.post(API_BASE+"uploadFile",
+                                                params=payload,
+                                                files={"file": uploaded_file})
+                        print(response.url)
+                    if response.status_code == 200:
+                        st.success('Successfully uploaded:   '+uploaded_file.name)
+                        uploaded_file = None
+                        st.balloons()
+                    else:
+                        st.error('Error occurred: '+response.text)
 
 if __name__ == '__main__':
     style()
