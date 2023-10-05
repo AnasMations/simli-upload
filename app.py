@@ -50,7 +50,7 @@ def main():
 
     if len(code) == 4:
         st.markdown('<h3 style="text-align: center; color: rgb(137, 79, 218)">Choose PDF file</h3>', unsafe_allow_html=True)
-        uploaded_file = st.file_uploader("", type="pdf")
+        uploaded_file = st.file_uploader("", type=['pdf', 'ppt', 'pptx'])
 
         if uploaded_file is not None:
             #st.markdown('<h3 style="text-align: center; color: rgb(137, 79, 218)">Submit</h3>', unsafe_allow_html=True)
